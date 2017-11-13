@@ -16,6 +16,7 @@ class CreateMusic extends Migration
         Schema::create('music', function (Blueprint $table) {
             $table->increments('music_id');
             $table->string('music_name');
+            $table->string('music_author');
             $table->string('music_addr');
             $table->string('music_img')->nullable();
             $table->string('music_lyric')->nullable();
