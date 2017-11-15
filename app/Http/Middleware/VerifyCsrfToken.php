@@ -15,7 +15,8 @@ class VerifyCsrfToken extends Middleware
         'user/register',
         'user/login',
         'list',
-        'admin/music'
+        'admin/music',
+        'list/music'
         //
     ];
 }

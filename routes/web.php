@@ -20,3 +20,8 @@ Route::post('list','ListController@add');                           //创建播�
 Route::delete('list','ListController@del');                         //删除播放列表
 Route::get('list','ListController@get_list');                       //获取播放列表
 Route::post('admin/music','AdminController@add');                   //上传歌曲
+Route::post('list/music','ListController@music');                   //添加歌曲到播放列表
+Route::get('get/list/{id}','ListController@get_list_music');        //获取播放列表里的歌曲
+Route::get('get/music','MusicController@get_all_music');            //获得所有歌曲
+Route::get('register',function (){return view('register');}); //注册页面
+Route::get('login',function(){return view('login');});        //登陆页面

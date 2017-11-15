@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>hey-Audio</title>
+	<title>chaosir-Audio</title>
 	<link rel="stylesheet" href="css/music.css">
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body class="blueHour">
 	<div class="search">
@@ -14,7 +15,7 @@
 	</div>
 	<div class="container">
 		<div class="music-list">
-			<div class="title">默认歌单</div>
+			<div class="title">所有歌曲</div>
 			<div class="list">
 				<ul>
 					<li>你在终点等我</li>
@@ -36,7 +37,7 @@
 		</audio>
 		<div class="music">
 			<div class="header">
-				<h1>hey-Audio <small>音乐播放器</small></h1>
+				<h1>chaosir-Audio <small>音乐播放器</small></h1>
 			</div>
 			<div class="fengmian">
 				<img src="img/music.png" id="music-img" alt="">
