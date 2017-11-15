@@ -13,19 +13,21 @@ class AdminController extends Controller
         {
             if (empty($token)) {
                 $return = array('type' => 3, 'msg' => '请登陆');
-                return exit(response()->json($return));
+//                return exit(response()->json($return));
+            return view('login');
             }
             $row = DB::select('select id from user where token = :token and updated_at > :now', ['token' => $token, 'now' => time() + 28800]);
             if (!$row) {
                 $return = array('type' => 3, 'msg' => '您还未登陆，请登陆');
-                return exit(response()->json($return));
+//                return exit(response()->json($return));
+            return view('login');
             }
             return intval($row[0]->id);
         }
 
         public function add(Request $request)
         {
-            $token = $request->header('token');
+            $token = session('token');
             $user_id = $this->get_id($token);
             $is_admin = DB::select('select is_admin from user where id=:id',['id'=>$user_id])[0]->is_admin;
             if($is_admin != 1){

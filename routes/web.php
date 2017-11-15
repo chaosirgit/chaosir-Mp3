@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','IndexController@index');                            //主页
 Route::post('user/register','UserController@register');             //注册
 Route::post('user/login','UserController@login');                   //登陆
 Route::post('list','ListController@add');                           //创建播放列表

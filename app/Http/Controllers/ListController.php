@@ -13,19 +13,21 @@ class ListController extends Controller
     public function get_id($token){
         if(empty($token)){
             $return = array('type'=>3,'msg'=>'请登陆');
-            return exit(response()->json($return));
+//            return exit(response()->json($return));
+            return view('login');
         }
         $row = DB::select('select id from user where token = :token and updated_at > :now',['token'=>$token,'now'=>time()+28800]);
         if(!$row){
             $return = array('type'=>3,'msg'=>'登陆超时，请重新登陆');
-            return exit(response()->json($return));
+//            return exit(response()->json($return));
+        return view('login');
         }
         return intval($row[0]->id);
     }
 
     public function add(Request $request)
     {
-        $token = $request->header('token');
+        $token = session('token');
         $list_name = $request->input('list_name');
         $id = $this->get_id($token);
         if (empty($list_name)) {
@@ -44,7 +46,7 @@ class ListController extends Controller
 
     public function del(Request $request)
     {
-        $token = $request->header('token');
+        $token = session('token');
         $list_id = $request->get('list_id');
         $id = $this->get_id($token);
         $query = DB::delete('delete from list where list_id = :list_id',['list_id'=>$list_id]);
@@ -59,7 +61,7 @@ class ListController extends Controller
 
     public function get_list(Request $request)
     {
-        $token = $request->header('token');
+        $token = session('token');
         $id = $this->get_id($token);
         $results = DB::select('select list_id,list_name from list where user_id = :user_id',['user_id'=>$id]);
         if(!$results){
@@ -72,7 +74,7 @@ class ListController extends Controller
 
     public function music(Request $request)
     {
-        $token = $request->header('token');
+        $token = session('token');
         $id = $this->get_id($token);
         $list_id = $request->input('list_id');
         $music_id = $request->input('music_id');
@@ -101,7 +103,7 @@ class ListController extends Controller
     public function get_list_music(Request $request)
     {
 
-        $token = $request->header('token');
+        $token = session('token');
         $id = $this->get_id($token);
         $list_id = $request->id;
         $str = DB::select('select music_id from list where list_id = :list_id',['list_id'=>$list_id])[0]->music_id;

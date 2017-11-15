@@ -74,7 +74,8 @@ class UserController extends Controller
             $updated_at = date('Y-m-d H:i:s',time()+28800+1209600);
             $query = DB::update('update user set token = :token , updated_at = :updated_at where id = :id',['token'=>$token,'updated_at'=>$updated_at,'id'=>$id]);
             if($query){
-                $return = array('type'=>1,'msg'=>'登陆成功','token'=>$token);
+                session(['token'=>$token]);
+                $return = array('type'=>1,'msg'=>'登陆成功');
                 return response()->json($return);
             }else{
                 $return = array('type'=>0,'msg'=>'登陆失败，请重试');
