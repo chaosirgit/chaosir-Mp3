@@ -9,31 +9,25 @@
 </head>
 <body class="blueHour">
 	<div class="search">
-		<input id="keyword" type="text">
-		<a id="search-btn" href="javascript:;">网易云搜一下</a>
-		<span id="result"></span>
+		{{--<input id="keyword" type="text">--}}
+		{{--<a id="search-btn" href="javascript:;">&nbsp;&nbsp;&nbsp;搜&nbsp;&nbsp;一&nbsp;&nbsp;下&nbsp;&nbsp;</a>--}}
+		{{--<span id="result"></span>--}}
 	</div>
 	<div class="container">
 		<div class="music-list">
 			<div class="title">所有歌曲</div>
 			<div class="list">
 				<ul>
-					<li>你在终点等我</li>
-					<li>白昼之夜（纯音乐）</li>
-					<li>告白气球</li>
-					<li>那就这样吧</li>
-					<li>骄傲的少年</li>
-					<li>岁月神偷</li>
+					@foreach ($music_all as $music)
+					<li>{{ $music->music_name }} - {{ $music->music_author }}</li>
+					@endforeach
 				</ul>
 			</div>
 		</div>
 		<audio id="audio">
-			<source title="你在终点等我" data-img="http://p1.music.126.net/ddhcDeGSl9VhXJLfOsNDEA==/3433774824740403.jpg" src="http://link.hhtjim.com/163/431357712.mp3">
-			<source title="白昼之夜（纯音乐）" data-img="http://p1.music.126.net/he7P6CYpQmz8KqYSdULuOQ==/94557999994394.jpg" src="http://oc1475jft.bkt.clouddn.com/baizhouzhiye.mp3">
-			<source title="告白气球" data-img="http://p1.music.126.net/tlp3VWVQVe0Je1r-oHn91g==/17666952835430891.jpg" src="http://oc1475jft.bkt.clouddn.com/gaobaiqiqiu.mp3">
-			<source title="那就这样吧" data-img="http://p1.music.126.net/fYNa5MMN0KTIYP2KMpYObQ==/17923139044585525.jpg" src="http://link.hhtjim.com/163/28949843.mp3">
-			<source title="骄傲的少年" data-img="http://p1.music.126.net/Brn39jwEDNPVV6pNWcv_rA==/1391981724588577.jpg" src="http://link.hhtjim.com/163/408332757.mp3">
-			<source title="岁月神偷" data-img="http://p1.music.126.net/54wdQi_3rpjreY2oo2jb7w==/5998935441219557.jpg" src="http://link.hhtjim.com/163/28285910.mp3">
+			@foreach ($music_all as $music)
+			<source title="{{$music->music_name}}" data-img="" src="{{$music->music_addr}}">
+			@endforeach
 		</audio>
 		<div class="music">
 			<div class="header">
@@ -68,17 +62,22 @@
 		</div>
 	</div>
 	<div id="footer">
-		<a href="https://fehey.com/" target="_blank">博客</a>
-		<a href="https://github.com/EryouHao/hey-Audio" target="_blank">github源码</a>
+		@if($user_info[0]->id)
+			<a href="javascript:;">{{$user_info[0]->nickname}}</a>
+		@else
+		<a href="login" target="_blank">登录</a>
+		@endif
+		<a href="http://blog.adminchao.com/" target="_blank">博客</a>
+		<a href="admin/upload" target="_blank">上传歌曲</a>
 	</div>
 
 	<script src="js/music.js"></script>
 	<script>
 		// 回调函数将返回的内容添加到结果区（需要在页面加载完后加载上，为后面执行回调）
 		function jsonpcallback (rs) {
-			var resultHtml = '歌曲：<strong>' + rs.result.songs[0].name + '</strong>' + 
-							 '歌手：<strong>' + rs.result.songs[0].artists[0].name + '</strong>' +
-							 '<a href="javascript:;" id="to-play">立即播放</a>';	
+			var resultHtml = '歌曲：<strong>' + rs[0].music_name + '</strong>' +
+							 '歌手：<strong>' + rs[0].music_author + '</strong>' +
+							 '<a href="javascript:;" id="to-play">立即播放</a>';
 			result.innerHTML = resultHtml;
 			result.setAttribute('data-audio', rs.result.songs[0].audio);
 			result.setAttribute('data-img', rs.result.songs[0].album.picUrl);

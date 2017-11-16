@@ -31,7 +31,8 @@ class AdminController extends Controller
             $user_id = $this->get_id($token);
             $is_admin = DB::select('select is_admin from user where id=:id',['id'=>$user_id])[0]->is_admin;
             if($is_admin != 1){
-                return exit(response()->json(['type'=>0,'msg'=>'您不是管理员']));
+//                return exit(response()->json(['type'=>0,'msg'=>'您不是管理员']));
+            return '您不是管理员';
             }
             $mp3 = $request->file('mp3');
             if(!$mp3->isValid()){
@@ -50,16 +51,23 @@ class AdminController extends Controller
             $music_author = explode('.',$arr[1])[0];
             $is_repeat = DB::select('select count(*) as count from music where music_name = :music_name and music_author = :music_author',['music_name'=>$music_name,'music_author'=>$music_author])[0]->count;
             if($is_repeat){
-                return exit(response()->json(array('type'=>0,'msg'=>'此歌曲已经有了')));
+//                return exit(response()->json(array('type'=>0,'msg'=>'此歌曲已经有了')));
+                return '此歌曲已经有了';
             }else {
                 $path = $mp3->move('mp3',md5(time().$filename).'.mp3');
                 $music_addr = $path->getPathname();
                 $query = DB::insert('insert into music (music_name, music_author, music_addr, created_at) values (:music_name,:music_author,:music_addr,:created_at)', ['music_name' => $music_name, 'music_author' => $music_author, 'music_addr' => $music_addr, 'created_at' => date('Y-m-d H:i:s', time() + 28800)]);
                 if ($query) {
-                    return response()->json(['type' => 1, 'msg' => '上传成功']);
+//                    return response()->json(['type' => 1, 'msg' => '上传成功']);
+                return '上传成功';
                 } else {
                     return response()->json(['type' => 0, 'msg' => '上传失败']);
                 }
             }
+        }
+
+        public function upload()
+        {
+            return view('upload');
         }
 }

@@ -28,8 +28,11 @@ class IndexController extends Controller
     {
         $token = session('token');
         $user_id = $this->get_id($token);
-        $results = DB::select('select nickname,gender from user where id = :id',['id'=>$user_id]);
-            return view('welcome',['results'=>$results]);
+        $user_info = DB::select('select id,nickname,gender from user where id = :id',['id'=>$user_id]);
+        $music_all = DB::select('select music_id,music_name,music_author,music_addr from music ORDER BY music_id DESC');
+        return view('welcome',['user_info'=>$user_info,'music_all'=>$music_all]);
+
+
 
     }
 }

@@ -219,11 +219,9 @@ window.onload = function () {
 			alert('关键词不能为空');
 			return;
 		}
-		var url = "http://s.music.163.com/search/get/";
+		var url = "search/music";
 		var data = {
-			"type": 1,
-			"limit": 1,
-			"s": value,
+			"keywords": value,
 			"callback": "jsonpcallback"
 		};
 		var buffer = [];
