@@ -26,7 +26,7 @@
 		</div>
 		<audio id="audio">
 			@foreach ($music_all as $music)
-			<source title="{{$music->music_name}}" data-img="" src="{{$music->music_addr}}">
+			<source title="{{$music->music_name}} - {{$music->music_author}}" data-img="img/chaosir.png" src="{{$music->music_addr}}">
 			@endforeach
 		</audio>
 		<div class="music">
@@ -34,7 +34,7 @@
 				<h1>chaosir-Audio <small>音乐播放器</small></h1>
 			</div>
 			<div class="fengmian">
-				<img src="img/music.png" id="music-img" alt="">
+				<img src="img/chaosir.png" id="music-img" alt="">
 			</div>
 			<div id="title">
 				hey!
