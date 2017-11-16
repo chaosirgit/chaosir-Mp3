@@ -30,8 +30,8 @@
         <label for="inputPassword" class="sr-only">密  码</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="密码" required>
         <br>
-        <a class="btn btn-lg btn-primary btn-block" href="register">Register</a>
-        <input type="submit" class="btn btn-lg btn-primary btn-block" onclick="do_login()" value="Login">
+        <a class="btn btn-lg btn-primary btn-block" href="register"> 注 册 </a>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" onclick="do_login()" value=" 登 录 ">
     </form>
 </div>
 </body>
