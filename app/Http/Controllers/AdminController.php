@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use itbdw\QiniuStorage\QiniuStorage;
 
 
 class AdminController extends Controller
@@ -68,8 +69,8 @@ class AdminController extends Controller
 
         public function upload()
         {
-            $disk = \Storage::disk('qiniu');
-            $upload_token = $disk->getDriver()->uploadToken();
+            $disk = QiniuStorage::disk('qiniu');
+            $upload_token = $disk->uploadToken();
 
             return view('upload',['upload_token'=>$upload_token]);
         }
