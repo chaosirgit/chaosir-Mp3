@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" action="music" method="post" enctype="multipart/form-data" id="filemp3">
+    <form class="form-signin" action="http://upload-z2.qiniup.com" method="post" enctype="multipart/form-data">
         <h2 class="form-signin-heading">上传歌曲</h2>
         <div class="form-group">
             <input type="file" id="exampleInputFile" name="mp3"/>
@@ -31,6 +31,7 @@
         </div>
         <br>
         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Upload">
+        <input type="hidden" name="token" value="{{$upload_token}}">
     </form>
 </div>
 </body>

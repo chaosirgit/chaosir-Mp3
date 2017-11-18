@@ -21,7 +21,7 @@ Route::post('admin/music','AdminController@add');                   //上传歌�
 Route::post('list/music','ListController@music');                   //添加歌曲到播放列表
 Route::get('get/list/{id}','ListController@get_list_music');        //获取播放列表里的歌曲
 Route::get('get/music','MusicController@get_all_music');            //获得所有歌曲
-Route::get('register',function (){return view('register');}); //注册页面
-Route::get('login',function(){return view('login');});        //登陆页面
+Route::get('register',function (){return view('register');});       //注册页面
+Route::get('login',function(){return view('login');});              //登陆页面
 Route::get('search/music','MusicController@search');                //搜索歌曲或歌手
 Route::get('admin/upload','AdminController@upload');                //上传歌曲页面

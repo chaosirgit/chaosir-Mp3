@@ -63,6 +63,22 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'qiniu' => [
+            'driver' => 'qiniu',
+            'domain' => 'www.adminchao.com',          //你的七牛域名，支持 http 和 https，也可以不带协议，默认 http
+            'access_key'    => 'X9TO223s4oinmxeMjvnLF-J7dQcPf515K5rVHATs',                          //AccessKey
+            'secret_key' => 'wyV2PPaEsw3tQRncS-H2L0rqY_COw-BpdgT_pDom',                             //SecretKey
+            'bucket' => 'adminchao',                                 //Bucket名字
+        ],
+
+        'qiniu_private' => [
+            'driver' => 'qiniu',
+            'domain' => 'https://www.example.com',          //你的七牛域名，支持 http 和 https，也可以不带协议，默认 http
+            'access_key'    => '',                          //AccessKey
+            'secret_key' => '',                             //SecretKey
+            'bucket' => 'qiniu_private',                    //Bucket名字
+        ],
+
     ],
 
 ];

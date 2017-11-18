@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        itbdw\QiniuStorage\QiniuFilesystemServiceProvider,
 
         /*
          * Application Service Providers...
